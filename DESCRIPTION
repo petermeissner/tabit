@@ -1,12 +1,23 @@
 Package: tabit
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Simple Tabulation Made Simple
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: person(
+        given  = "Peter", 
+        family = "Meissner", 
+        email  = "retep.meissner@gmail.com", 
+         role  = c("aut", "cre")
+     )
+Maintainer: Peter Meissner <retep.meissner@gmail.com>
+Description: Simple tabulation should be dead simple. 
+    This package is an opinionatad approach to easy tabulations while also 
+    providing exact numbers and allowing for re-usability. 
+    This is achieved by providing tabulations as data.frames with columns for 
+    values, optional variable names, frequency counts including and excluding 
+    NAs and percentages for counts including and excluding NAs. Also values are
+    automatically sorted by in decreasing order of frequncy counts to allow for 
+    fast skimming of the most important information. 
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1

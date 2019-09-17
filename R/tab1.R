@@ -1,9 +1,11 @@
-#' tab1
+#' ti_tab1
 #'
 #' @param x the thing to be tabulated
 #' @param sort should
 #' @param digits the number of digits to round percentages to
 #' @param ... further optional arguments passed through to methods
+#' @param as_df if more than one vector has been tabualted at once, should
+#'     the results be combined into a data.frame before returning
 #'
 #' @export
 #'
@@ -13,33 +15,43 @@
 #'  \code{pct} (the percentage that value occured excluding NAs) and
 #'  \code{pct_all} (the percantage that value occure including NAs)
 #'
-tab1 <-
+#'
+#'
+#' @examples
+#'
+#' ti_tab1(mtcars$cyl)
+#' ti_tab1(mtcars[, c("cyl", "am")])
+#'
+#'
+ti_tab1 <-
   function (x, sort = 1, digits = 2, ...) {
-    UseMethod("tab1", x)
+    UseMethod("ti_tab1", x)
   }
 
 
 
-#' tab1.data.frame
+#' ti_tab1.data.frame
 #'
-#' @rdname tab1
+#' @rdname ti_tab1
 #'
 #' @export
 #'
-tab1.data.frame <-
+ti_tab1.data.frame <-
   function (x, sort = 1, digits = 2, ..., as_df = TRUE ) {
-    tab1(as.list(x), sort = sort, digits = digits, ..., as_df = as_df)
+    ti_tab1(as.list(x), sort = sort, digits = digits, ..., as_df = as_df)
   }
 
-#' tab1.list
+
+
+#' ti_tab1.list
 #'
-#' @rdname tab1
+#' @rdname ti_tab1
 #'
 #' @export
 #'
-tab1.list <-
+ti_tab1.list <-
   function (x, sort = 1, digits = 2, ..., as_df = TRUE) {
-    tmp <- lapply(x, tab1, sort = sort, ...)
+    tmp <- lapply(x, ti_tab1, sort = sort, ...)
 
     if ( as_df == TRUE ){
       nam <- names(x)
@@ -60,13 +72,13 @@ tab1.list <-
 
 
 
-#' tab1.default
+#' ti_tab1.default
 #'
-#' @rdname tab1
+#' @rdname ti_tab1
 #'
 #' @export
 #'
-tab1.default <-
+ti_tab1.default <-
   function (x, sort = 1, digits = 2, ...) {
     tmp     <- table(x, useNA = "always")
     tmp_val <- as.integer(tmp)
