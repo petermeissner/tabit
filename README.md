@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## simple Tabulation Made Simple
+## Simple Tabulation Made Simple
 
 **Status**
 
@@ -23,16 +23,18 @@ status](https://ci.appveyor.com/api/projects/status/github/petermeissner/tabit?b
 
 **Development version**
 
-0.1.0 - 2019-09-17 / 12:40:18
+0.1.0 - 2019-09-17 / 13:29:53
 
 **Description**
 
-Simple tabulation should be dead simple. This package is dedicated to an
-easy way to get tabulations while also providing exact numbers and
+Simple tabulation should be dead simple. This package is an opinionatad
+approach to easy tabulations while also providing exact numbers and
 allowing for re-usability. This is achieved by providing tabulations as
 data.frames with columns for values, optional variable names, frequency
 counts including and excluding NAs and percentages for counts including
-and excluding NAs.
+and excluding NAs. Also values are automatically sorted by in decreasing
+order of frequency counts to allow for fast skimming of the most
+important information.
 
 **License**
 
