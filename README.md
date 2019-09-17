@@ -14,11 +14,10 @@ status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostat
 <a/> [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/petermeissner/tabit?branch=master&svg=true)](https://ci.appveyor.com/project/petermeissner/ical)
 <a href="https://cran.r-project.org/package=tabit">
-<img src="http://www.r-pkg.org/badges/version/tabit"> </a><!--
+<img src="http://www.r-pkg.org/badges/version/tabit"> </a>
 <a href="https://codecov.io/gh/petermeissner/tabit">
-  <img src="https://codecov.io/gh/petermeissner/tabit/branch/master/graph/badge.svg" alt="Codecov" />
-</a>
---><img src="http://cranlogs.r-pkg.org/badges/grand-total/tabit">
+<img src="https://codecov.io/gh/petermeissner/tabit/branch/master/graph/badge.svg" alt="Codecov" />
+</a> <img src="http://cranlogs.r-pkg.org/badges/grand-total/tabit">
 <img src="http://cranlogs.r-pkg.org/badges/tabit">
 
 **Development version**
