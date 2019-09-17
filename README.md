@@ -22,7 +22,7 @@ status](https://ci.appveyor.com/api/projects/status/github/petermeissner/tabit?b
 
 **Development version**
 
-0.1.0 - 2019-09-17 / 13:29:53
+0.1.0 - 2019-09-17 / 19:30:00
 
 **Description**
 

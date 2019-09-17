@@ -25,15 +25,15 @@ ti_tab1(x, sort = 1, digits = 2, ...)
 
 \item{...}{further optional arguments passed through to methods}
 
-\item{as_df}{if more than one vector has been tabualted at once, should
+\item{as_df}{if more than one vector has been tabulated at once, should
 the results be combined into a data.frame before returning}
 }
 \value{
 Returns a data frame with columns
  \code{value} (the values tabulated by),
  \code{count} (the number of times a value occured),
- \code{pct} (the percentage that value occured excluding NAs) and
- \code{pct_all} (the percantage that value occure including NAs)
+ \code{pct} (the percentage that value occurred excluding NAs) and
+ \code{pct_all} (the percentage that value occurred including NAs)
 }
 \description{
 ti_tab1
