@@ -22,11 +22,11 @@ status](https://ci.appveyor.com/api/projects/status/github/petermeissner/tabit?b
 
 **Development version**
 
-0.1.0 - 2019-09-17 / 19:30:00
+0.1.1 - 2019-09-17 / 19:30:00
 
 **Description**
 
-Simple tabulation should be dead simple. This package is an opinionatad
+Simple tabulation should be dead simple. This package is an opinionated
 approach to easy tabulations while also providing exact numbers and
 allowing for re-usability. This is achieved by providing tabulations as
 data.frames with columns for values, optional variable names, frequency
