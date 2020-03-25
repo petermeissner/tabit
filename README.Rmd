@@ -118,8 +118,8 @@ devtools::install_github("petermeissner/tabit")
 
 ```{r example}
 library(tabit)
-ti_tab1(mtcars$cyl)
+tabit_1(mtcars$cyl)
 
-ti_tab1(mtcars[, c("cyl", "am")])
+tabit_1(mtcars[, c("cyl", "am")])
 ```
 

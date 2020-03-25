@@ -59,14 +59,14 @@ devtools::install_github("petermeissner/tabit")
 
 ``` r
 library(tabit)
-ti_tab1(mtcars$cyl)
+tabit_1(mtcars$cyl)
 ##   value count   pct pct_all
 ## 3     8    14 43.75   43.75
 ## 1     4    11 34.38   34.38
 ## 2     6     7 21.88   21.88
 ## 4  <NA>     0    NA    0.00
 
-ti_tab1(mtcars[, c("cyl", "am")])
+tabit_1(mtcars[, c("cyl", "am")])
 ##   name value count   pct pct_all
 ## 1  cyl     8    14 43.75   43.75
 ## 2  cyl     4    11 34.38   34.38
