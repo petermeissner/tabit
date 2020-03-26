@@ -19,12 +19,12 @@
 #'
 #' @examples
 #'
-#' tabit_x(mtcars$cyl)
+#' tabit_x(mtcars)
 #' tabit_x(mtcars[, c("cyl", "am")])
 #'
 #'
 tabit_x <-
-  function (x, ..., sort = 1, digits = 2) {
+  function (x, ..., sort = 1, digits = 2, useNA = TRUE ) {
     UseMethod("tabit_x", x)
   }
 
@@ -37,10 +37,86 @@ tabit_x <-
 #' @export
 #'
 tabit_x.data.frame <-
-  function (x, ..., sort = 1, digits = 2, as_df = TRUE ) {
-    aggregate(1:10, FUN = mean, by = list(rep(1,10)))
+  function (x, ..., sort = 1, digits = 2, by = NULL, useNA = TRUE ) {
+
+    # process by parameter
+    if ( is.null(by) == TRUE ){
+        by <- x
+    }
+
+    # process useNA parameter
+    if ( useNA == TRUE ){
+      by <-
+        lapply(
+          X   = by,
+          FUN =
+            function(by){
+              by[is.na(by)] <- "NA"
+              as.character(by)
+            }
+        )
+    }
+
+    # execute aggregation
+    tmp <-
+      aggregate(rep(1, nrow(x)), FUN = sum, by = by)
+
+    names(tmp)[length(names(tmp))] <- "count"
+
+    # sort
+    if ( sort > 0 ){
+      tmp <- tmp[order(-tmp$count), ]
+    } else if ( sort < 0 ){
+      tmp <- tmp[order(tmp$count), ]
+    }
+
+    # return
+    tmp
   }
 
+
+#' tabit_x.grouped_df
+#'
+#' @rdname tabit_x
+#'
+#' @export
+#'
+tabit_x.grouped_df <-
+  function (x, ..., sort = 1, digits = 2, useNA = TRUE ) {
+
+    # process by parameter
+    by_nam <- names(attributes(x)$groups)
+    by <- x[by_nam[by_nam != ".rows"]]
+
+    # process useNA parameter
+    if ( useNA == TRUE ){
+      by <-
+        lapply(
+          X   = by,
+          FUN =
+            function(by){
+              by[is.na(by)] <- "NA"
+              as.character(by)
+            }
+        )
+    }
+
+    # execute aggregation
+    tmp <-
+      aggregate(rep(1, nrow(x)), FUN = sum, by = by)
+
+    names(tmp)[length(names(tmp))] <- "count"
+
+    # sort
+    if ( sort > 0 ){
+      tmp <- tmp[order(-tmp$count), ]
+    } else if ( sort < 0 ){
+      tmp <- tmp[order(tmp$count), ]
+    }
+
+    # return
+    tmp
+  }
 
 
 #' tabit_x.default
@@ -50,7 +126,10 @@ tabit_x.data.frame <-
 #' @export
 #'
 tabit_x.default <-
-  function (x, ..., sort = 1, digits = 2) {
-    stop("tabit_x is not implemented for type: ", paste(class(x), collapse = ", "))
+  function (x, ..., sort = 1, digits = 2, by = NULL, useNA = "always") {
+    stop(
+      "tabit_x is not implemented for type: ",
+      paste(class(x), collapse = ", ")
+    )
   }
 

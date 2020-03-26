@@ -3,14 +3,17 @@
 \name{tabit_x}
 \alias{tabit_x}
 \alias{tabit_x.data.frame}
+\alias{tabit_x.grouped_df}
 \alias{tabit_x.default}
 \title{tabit_x}
 \usage{
-tabit_x(x, ..., sort = 1, digits = 2)
+tabit_x(x, ..., sort = 1, digits = 2, useNA = TRUE)
 
-\method{tabit_x}{data.frame}(x, ..., sort = 1, digits = 2, as_df = TRUE)
+\method{tabit_x}{data.frame}(x, ..., sort = 1, digits = 2, by = NULL, useNA = TRUE)
 
-\method{tabit_x}{default}(x, ..., sort = 1, digits = 2)
+\method{tabit_x}{grouped_df}(x, ..., sort = 1, digits = 2, useNA = TRUE)
+
+\method{tabit_x}{default}(x, ..., sort = 1, digits = 2, by = NULL, useNA = "always")
 }
 \arguments{
 \item{x}{the thing to be tabulated}
@@ -36,11 +39,13 @@ tabit_x
 
 tabit_x.data.frame
 
+tabit_x.grouped_df
+
 tabit_x.default
 }
 \examples{
 
-tabit_x(mtcars$cyl)
+tabit_x(mtcars)
 tabit_x(mtcars[, c("cyl", "am")])
 
 
