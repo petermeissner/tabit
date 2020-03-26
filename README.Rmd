@@ -116,10 +116,48 @@ devtools::install_github("petermeissner/tabit")
 ```
 ## Example
 
-```{r example}
+```{r load package}
+# load package
 library(tabit)
-tabit_1(mtcars$cyl)
+```
 
-tabit_1(mtcars[, c("cyl", "am")])
+
+**simple vectors**
+```{r}
+# simple tabulation
+tabit(mtcars$cyl)
+```
+
+**simple data.frames**
+```{r}
+# can we do this with data.frames
+tabit(mtcars[, c("cyl", "am")])
+```
+
+
+**simple tibbles**
+```{r}
+# what about this tibble thing?
+suppressPackageStartupMessages({
+  library(dplyr)
+})
+mtcars %>% select(cyl, am) %>% tabit()
+```
+
+
+**grouped tibbles**
+```{r}
+# ... and grouped tibbles?
+mtcars %>% group_by(cyl, am) %>% tabit()
+```
+
+
+**too much magic?**
+```{r}
+# use tabit_1() for vector usage
+tabit_1(letters[1:4])
+
+# use tabit_x for data.frames and tibbles
+tabit_x(mtcars[, c("cyl", "am")])
 ```
 
