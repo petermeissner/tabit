@@ -86,34 +86,7 @@ tabit_x.grouped_df <-
     by_nam <- names(attributes(x)$groups)
     by <- x[by_nam[by_nam != ".rows"]]
 
-    # process useNA parameter
-    if ( useNA == TRUE ){
-      by <-
-        lapply(
-          X   = by,
-          FUN =
-            function(by){
-              by[is.na(by)] <- "NA"
-              as.character(by)
-            }
-        )
-    }
-
-    # execute aggregation
-    tmp <-
-      stats::aggregate(rep(1, nrow(x)), FUN = sum, by = by)
-
-    names(tmp)[length(names(tmp))] <- "count"
-
-    # sort
-    if ( sort > 0 ){
-      tmp <- tmp[order(-tmp$count), ]
-    } else if ( sort < 0 ){
-      tmp <- tmp[order(tmp$count), ]
-    }
-
-    # return
-    tmp
+    tabit_x.data.frame(by, ..., sort = sort, digits = digits, useNA = useNA)
   }
 
 
