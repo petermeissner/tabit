@@ -34,6 +34,12 @@ tabit_1(x, sort = 1, digits = 2, ...)
 
 \item{as_df}{if more than one vector has been tabulated at once, should
 the results be combined into a data.frame before returning}
+
+\item{useNA}{how to handle NAs, defaults to "always" to always include NA as category}
+
+\item{pct}{add percentage columns}
+
+\item{na_to_char}{transform NA values to "NA" chracter string or not, defaults to TRUE}
 }
 \value{
 Returns a data frame with columns

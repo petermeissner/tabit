@@ -3,19 +3,19 @@
 #' @param x the thing to be tabulated
 #' @param sort should
 #' @param digits the number of digits to round percentages to
+#' @param useNA whether ro us NAs as value category or not, defaults to TRUE
 #' @param ... further optional arguments passed through to methods
-#' @param as_df if more than one vector has been tabulated at once, should
-#'     the results be combined into a data.frame before returning
 #'
 #' @export
 #'
 #' @return Returns a data frame with columns
-#'  \code{value} (the values tabulated by),
-#'  \code{count} (the number of times a value occured),
+#'  \code{variable} (the values tabulated by),
+#'  \code{count} (the number of times a value occurred),
 #'  \code{pct} (the percentage that value occurred excluding NAs) and
 #'  \code{pct_all} (the percentage that value occurred including NAs)
 #'
 #'
+#' @import stats
 #'
 #' @examples
 #'
@@ -37,12 +37,10 @@ tabit_x <-
 #' @export
 #'
 tabit_x.data.frame <-
-  function (x, ..., sort = 1, digits = 2, by = NULL, useNA = TRUE ) {
+  function (x, ..., sort = 1, digits = 2, useNA = TRUE ) {
 
     # process by parameter
-    if ( is.null(by) == TRUE ){
-        by <- x
-    }
+    by <- x
 
     # process useNA parameter
     if ( useNA == TRUE ){
@@ -59,7 +57,7 @@ tabit_x.data.frame <-
 
     # execute aggregation
     tmp <-
-      aggregate(rep(1, nrow(x)), FUN = sum, by = by)
+      stats::aggregate(rep(1, nrow(x)), FUN = sum, by = by)
 
     names(tmp)[length(names(tmp))] <- "count"
 
@@ -103,7 +101,7 @@ tabit_x.grouped_df <-
 
     # execute aggregation
     tmp <-
-      aggregate(rep(1, nrow(x)), FUN = sum, by = by)
+      stats::aggregate(rep(1, nrow(x)), FUN = sum, by = by)
 
     names(tmp)[length(names(tmp))] <- "count"
 
@@ -126,7 +124,7 @@ tabit_x.grouped_df <-
 #' @export
 #'
 tabit_x.default <-
-  function (x, ..., sort = 1, digits = 2, by = NULL, useNA = "always") {
+  function (x, ..., sort = 1, digits = 2, useNA = "always") {
     stop(
       "tabit_x is not implemented for type: ",
       paste(class(x), collapse = ", ")

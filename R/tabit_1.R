@@ -6,6 +6,9 @@
 #' @param ... further optional arguments passed through to methods
 #' @param as_df if more than one vector has been tabulated at once, should
 #'     the results be combined into a data.frame before returning
+#' @param na_to_char transform NA values to "NA" chracter string or not, defaults to TRUE
+#' @param pct add percentage columns
+#' @param useNA how to handle NAs, defaults to "always" to always include NA as category
 #'
 #' @export
 #'

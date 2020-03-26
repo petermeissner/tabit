@@ -9,11 +9,11 @@
 \usage{
 tabit_x(x, ..., sort = 1, digits = 2, useNA = TRUE)
 
-\method{tabit_x}{data.frame}(x, ..., sort = 1, digits = 2, by = NULL, useNA = TRUE)
+\method{tabit_x}{data.frame}(x, ..., sort = 1, digits = 2, useNA = TRUE)
 
 \method{tabit_x}{grouped_df}(x, ..., sort = 1, digits = 2, useNA = TRUE)
 
-\method{tabit_x}{default}(x, ..., sort = 1, digits = 2, by = NULL, useNA = "always")
+\method{tabit_x}{default}(x, ..., sort = 1, digits = 2, useNA = "always")
 }
 \arguments{
 \item{x}{the thing to be tabulated}
@@ -24,13 +24,12 @@ tabit_x(x, ..., sort = 1, digits = 2, useNA = TRUE)
 
 \item{digits}{the number of digits to round percentages to}
 
-\item{as_df}{if more than one vector has been tabulated at once, should
-the results be combined into a data.frame before returning}
+\item{useNA}{whether ro us NAs as value category or not, defaults to TRUE}
 }
 \value{
 Returns a data frame with columns
- \code{value} (the values tabulated by),
- \code{count} (the number of times a value occured),
+ \code{variable} (the values tabulated by),
+ \code{count} (the number of times a value occurred),
  \code{pct} (the percentage that value occurred excluding NAs) and
  \code{pct_all} (the percentage that value occurred including NAs)
 }
