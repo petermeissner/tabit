@@ -141,14 +141,18 @@ tabit(mtcars[, c("cyl", "am")])
 suppressPackageStartupMessages({
   library(dplyr)
 })
-mtcars %>% select(cyl, am) %>% tabit()
+mtcars %>% 
+  select(cyl, am) %>% 
+  tabit()
 ```
 
 
 **grouped tibbles**
 ```{r}
 # ... and grouped tibbles?
-mtcars %>% group_by(cyl, am) %>% tabit()
+mtcars %>% 
+  group_by(cyl, am) %>% 
+  tabit()
 ```
 
 

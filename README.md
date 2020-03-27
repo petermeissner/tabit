@@ -5,7 +5,7 @@
 
 **Status**
 
-*lines of R code:* 144, *lines of test code:* 48
+*lines of R code:* 125, *lines of test code:* 48
 
 [![repo
 status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
@@ -22,7 +22,7 @@ status](https://ci.appveyor.com/api/projects/status/github/petermeissner/tabit?b
 
 **Development version**
 
-0.2.0 - 2020-03-26 / 21:16:30
+0.2.0 - 2020-03-26 / 21:34:28
 
 **Description**
 
@@ -95,8 +95,10 @@ tabit(mtcars[, c("cyl", "am")])
 suppressPackageStartupMessages({
   library(dplyr)
 })
-## Warning: package 'dplyr' was built under R version 3.6.3
-mtcars %>% select(cyl, am) %>% tabit()
+## Warning: package 'dplyr' was built under R version 3.6.2
+mtcars %>% 
+  select(cyl, am) %>% 
+  tabit()
 ##   cyl am count
 ## 3   8  0    12
 ## 4   4  1     8
@@ -110,7 +112,9 @@ mtcars %>% select(cyl, am) %>% tabit()
 
 ``` r
 # ... and grouped tibbles?
-mtcars %>% group_by(cyl, am) %>% tabit()
+mtcars %>% 
+  group_by(cyl, am) %>% 
+  tabit()
 ##   cyl am count
 ## 3   8  0    12
 ## 4   4  1     8
