@@ -6,5 +6,9 @@ r:
   - release
   - devel
 
+r_packages:
+  - covr
+  - dplyr
+
 after_success:
   - Rscript -e 'library(covr); codecov()'
