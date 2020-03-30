@@ -5,6 +5,7 @@ r:
   - oldrel
   - release
   - devel
+  - 3.4.2
 
 r_packages:
   - covr
