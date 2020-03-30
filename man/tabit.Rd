@@ -13,5 +13,7 @@ tabit(...)
 \item{...}{parameters forwarded to tabit_1/tabit_df}
 }
 \description{
-tabit
+Tabulation function that automatically performs one way tabulations as well
+as cross tabulations depending on the input type - inheriting from
+data.frame or not.
 }

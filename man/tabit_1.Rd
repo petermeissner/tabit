@@ -39,28 +39,40 @@ the results be combined into a data.frame before returning}
 
 \item{pct}{add percentage columns}
 
-\item{na_to_char}{transform NA values to "NA" chracter string or not, defaults to TRUE}
+\item{na_to_char}{transform NA values to "NA" character string or not, defaults to TRUE}
 }
 \value{
 Returns a data frame with columns
- \code{value} (the values tabulated by),
- \code{count} (the number of times a value occured),
- \code{pct} (the percentage that value occurred excluding NAs) and
- \code{pct_all} (the percentage that value occurred including NAs)
+ \code{.variable} (the variable the values stem from),
+ \code{.value} (the values tabulated by),
+ \code{.count} (the number of times a value occurred),
+ \code{.pct} (the percentage that value occurred excluding NAs) and
+ \code{.pct_incl_na} (the percentage that value occurred including NAs)
 }
 \description{
-tabit_1
-
-tabit_1.data.frame
-
-tabit_1.list
-
-tabit_1.default
+Function to do frequency tables for single vectors or to do multiple frequency
+tabulations one for each column.
 }
 \examples{
 
 tabit_1(mtcars$cyl)
+##   .variable .value .count     .pct  pct_incl_na
+## 3         .      8     14    43.75        43.75
+## 1         .      4     11    34.38        34.38
+## 2         .      6      7    21.88        21.88
+## 4         .     NA      0       NA         0.00
+
+
+
 tabit_1(mtcars[, c("cyl", "am")])
+##   .variable .value .count   .pct  .pct_incl_na
+## 1       cyl      8     14  43.75         43.75
+## 2       cyl      4     11  34.38         34.38
+## 3       cyl      6      7  21.88         21.88
+## 4       cyl     NA      0     NA          0.00
+## 5        am      0     19  59.38         59.38
+## 6        am      1     13  40.62         40.62
+## 7        am     NA      0     NA          0.00
 
 
 }

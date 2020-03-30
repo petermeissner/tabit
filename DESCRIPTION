@@ -1,8 +1,8 @@
 Package: tabit
 Type: Package
 Title: Simple Tabulation Made Simple
-Version: 0.2.0
-Date: 2020-03-25
+Version: 0.2.1
+Date: 2020-03-30
 Authors@R: person(
         given  = "Peter", 
         family = "Meissner", 

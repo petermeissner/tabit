@@ -1,5 +1,14 @@
 #' tabit_x
 #'
+#' Function for cross tabulation of variables within a data.frame or data.frame
+#' like.
+#'
+#' The data.frame method will take all column value combination for cross
+#' tabulation while the grouped_df method is explicitly for tibbles with group
+#' information. For those only value combinations for the group columns are
+#' relevant.
+#'
+#'
 #' @param x the thing to be tabulated
 #' @param sort should
 #' @param digits the number of digits to round percentages to
@@ -9,10 +18,10 @@
 #' @export
 #'
 #' @return Returns a data frame with columns
-#'  \code{variable} (the values tabulated by),
-#'  \code{count} (the number of times a value occurred),
-#'  \code{pct} (the percentage that value occurred excluding NAs) and
-#'  \code{pct_all} (the percentage that value occurred including NAs)
+#'  zero, one or more columns with value combinations to be cross tabulated by,
+#'  \code{.count} (the number of times a value occurred),
+#'  \code{.pct} (the percentage that value occurred excluding NAs) and
+#'  \code{.pct_incl_na} (the percentage that value occurred including NAs)
 #'
 #'
 #' @import stats
@@ -42,6 +51,23 @@ tabit_x.data.frame <-
     # process by parameter
     by <- x
 
+    # short circuit edge cases
+    if ( ncol(by) == 0 ){
+      return(
+        data.frame(.count = integer(0))
+      )
+    }
+
+    if ( nrow(by) == 0 ){
+      return(
+        cbind(
+          df    =  by[0,, drop = FALSE],
+          .count = integer(0)
+        )
+      )
+    }
+
+
     # process useNA parameter
     if ( useNA == TRUE ){
       by <-
@@ -49,7 +75,7 @@ tabit_x.data.frame <-
           X   = by,
           FUN =
             function(by){
-              by[is.na(by)] <- "NA"
+              by[is.na(by)] <- "$//NA//$"
               as.character(by)
             }
         )
@@ -59,13 +85,32 @@ tabit_x.data.frame <-
     tmp <-
       stats::aggregate(rep(1, nrow(x)), FUN = sum, by = by)
 
-    names(tmp)[length(names(tmp))] <- "count"
+    # post process aggregation
+    names(tmp)[length(names(tmp))] <- ".count"
+    tmp[tmp == "$//NA//$" ] <- NA
+
+
+    # calculate percentages
+    iffer <- complete.cases(tmp)
+    tmp[iffer, ".pct"] <-
+      round(
+        x      = tmp[iffer, ".count"] / sum(tmp[iffer, ".count"]) * 100,
+        digits = digits
+      )
+
+    tmp$.pct_incl_na <-
+      round(
+        x      = tmp[, ".count"] / sum(tmp[, ".count"]) * 100,
+        digits = digits
+      )
+
+
 
     # sort
     if ( sort > 0 ){
-      tmp <- tmp[order(-tmp$count), ]
+      tmp <- tmp[order(-tmp$.count), ]
     } else if ( sort < 0 ){
-      tmp <- tmp[order(tmp$count), ]
+      tmp <- tmp[order(tmp$.count), ]
     }
 
     # return

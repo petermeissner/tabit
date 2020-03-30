@@ -5,7 +5,7 @@
 
 **Status**
 
-*lines of R code:* 125, *lines of test code:* 48
+*lines of R code:* 150, *lines of test code:* 117
 
 [![repo
 status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
@@ -22,7 +22,7 @@ status](https://ci.appveyor.com/api/projects/status/github/petermeissner/tabit?b
 
 **Development version**
 
-0.2.0 - 2020-03-26 / 21:34:28
+0.2.1 - 2020-03-30 / 20:12:13
 
 **Description**
 
@@ -67,11 +67,11 @@ library(tabit)
 ``` r
 # simple tabulation
 tabit(mtcars$cyl)
-##   variable value count   pct pct_incl_na
-## 3        x     8    14 43.75       43.75
-## 1        x     4    11 34.38       34.38
-## 2        x     6     7 21.88       21.88
-## 4        x    NA     0    NA        0.00
+##   .variable .value .count  .pct .pct_incl_na
+## 3         .      8     14 43.75        43.75
+## 1         .      4     11 34.38        34.38
+## 2         .      6      7 21.88        21.88
+## 4         .     NA      0    NA         0.00
 ```
 
 **simple data.frames**
@@ -79,13 +79,13 @@ tabit(mtcars$cyl)
 ``` r
 # can we do this with data.frames
 tabit(mtcars[, c("cyl", "am")])
-##   cyl am count
-## 3   8  0    12
-## 4   4  1     8
-## 2   6  0     4
-## 1   4  0     3
-## 5   6  1     3
-## 6   8  1     2
+##   cyl am .count  .pct .pct_incl_na
+## 3   8  0     12 37.50        37.50
+## 4   4  1      8 25.00        25.00
+## 2   6  0      4 12.50        12.50
+## 1   4  0      3  9.38         9.38
+## 5   6  1      3  9.38         9.38
+## 6   8  1      2  6.25         6.25
 ```
 
 **simple tibbles**
@@ -95,17 +95,17 @@ tabit(mtcars[, c("cyl", "am")])
 suppressPackageStartupMessages({
   library(dplyr)
 })
-## Warning: package 'dplyr' was built under R version 3.6.2
+## Warning: package 'dplyr' was built under R version 3.6.3
 mtcars %>% 
   select(cyl, am) %>% 
   tabit()
-##   cyl am count
-## 3   8  0    12
-## 4   4  1     8
-## 2   6  0     4
-## 1   4  0     3
-## 5   6  1     3
-## 6   8  1     2
+##   cyl am .count  .pct .pct_incl_na
+## 3   8  0     12 37.50        37.50
+## 4   4  1      8 25.00        25.00
+## 2   6  0      4 12.50        12.50
+## 1   4  0      3  9.38         9.38
+## 5   6  1      3  9.38         9.38
+## 6   8  1      2  6.25         6.25
 ```
 
 **grouped tibbles**
@@ -115,13 +115,13 @@ mtcars %>%
 mtcars %>% 
   group_by(cyl, am) %>% 
   tabit()
-##   cyl am count
-## 3   8  0    12
-## 4   4  1     8
-## 2   6  0     4
-## 1   4  0     3
-## 5   6  1     3
-## 6   8  1     2
+##   cyl am .count  .pct .pct_incl_na
+## 3   8  0     12 37.50        37.50
+## 4   4  1      8 25.00        25.00
+## 2   6  0      4 12.50        12.50
+## 1   4  0      3  9.38         9.38
+## 5   6  1      3  9.38         9.38
+## 6   8  1      2  6.25         6.25
 ```
 
 **too much magic?**
@@ -129,20 +129,20 @@ mtcars %>%
 ``` r
 # use tabit_1() for vector usage
 tabit_1(letters[1:4])
-##   variable value count pct pct_incl_na
-## 1        x     a     1  25          25
-## 2        x     b     1  25          25
-## 3        x     c     1  25          25
-## 4        x     d     1  25          25
-## 5        x    NA     0  NA           0
+##   .variable .value .count .pct .pct_incl_na
+## 1         .      a      1   25           25
+## 2         .      b      1   25           25
+## 3         .      c      1   25           25
+## 4         .      d      1   25           25
+## 5         .     NA      0   NA            0
 
 # use tabit_x for data.frames and tibbles
 tabit_x(mtcars[, c("cyl", "am")])
-##   cyl am count
-## 3   8  0    12
-## 4   4  1     8
-## 2   6  0     4
-## 1   4  0     3
-## 5   6  1     3
-## 6   8  1     2
+##   cyl am .count  .pct .pct_incl_na
+## 3   8  0     12 37.50        37.50
+## 4   4  1      8 25.00        25.00
+## 2   6  0      4 12.50        12.50
+## 1   4  0      3  9.38         9.38
+## 5   6  1      3  9.38         9.38
+## 6   8  1      2  6.25         6.25
 ```

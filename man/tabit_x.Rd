@@ -28,19 +28,20 @@ tabit_x(x, ..., sort = 1, digits = 2, useNA = TRUE)
 }
 \value{
 Returns a data frame with columns
- \code{variable} (the values tabulated by),
- \code{count} (the number of times a value occurred),
- \code{pct} (the percentage that value occurred excluding NAs) and
- \code{pct_all} (the percentage that value occurred including NAs)
+ zero, one or more columns with value combinations to be cross tabulated by,
+ \code{.count} (the number of times a value occurred),
+ \code{.pct} (the percentage that value occurred excluding NAs) and
+ \code{.pct_incl_na} (the percentage that value occurred including NAs)
 }
 \description{
-tabit_x
-
-tabit_x.data.frame
-
-tabit_x.grouped_df
-
-tabit_x.default
+Function for cross tabulation of variables within a data.frame or data.frame
+like.
+}
+\details{
+The data.frame method will take all column value combination for cross
+tabulation while the grouped_df method is explicitly for tibbles with group
+information. For those only value combinations for the group columns are
+relevant.
 }
 \examples{
 
